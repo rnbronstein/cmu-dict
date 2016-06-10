@@ -28,6 +28,14 @@ require 'pry'
 #
 # end
 
+#retrieve word
+#format word
+#search dictionary
+#retrieve phonemes
+#count phonemes
+
+
+
 
 class Word
 
@@ -39,11 +47,9 @@ class Word
   end
 
   def search
-    matches = []
-    dictionary_entries.each do |entry|
-      matches << entry if entry.include?(input)
+    dictionary_entries.map do |entry|
+      entry if entry.include?(input)
     end
-    matches
   end
 
 end
@@ -71,7 +77,7 @@ class Counter
       end
       actual
     else
-      matches
+      @match = matches.first #recurring pronunciations have same syllable count
     end
   end
 
