@@ -1,6 +1,8 @@
-require "pry"
+require 'active_record'
 
-Dir[File.join(File.dirname(__FILE__), "../lib/concerns", "*.rb")].each {|f| require f}
-Dir[File.join(File.dirname(__FILE__), "../lib/cmu-dict", "*.rb")].each {|f| require f}
+conf = YAML.load_file('database.yml')
+ActiveRecord::Base.establish_connection conf[ENV['DB']]
+
 Dir[File.join(File.dirname(__FILE__), "../lib", "*.rb")].each {|f| require f}
-Dir[File.join(File.dirname(__FILE__), "../bin", "*.rb")].each {|f| require f}
+Dir[File.join(File.dirname(__FILE__), "../lib/concerns", "*.rb")].each {|f| require f}
+Dir[File.join(File.dirname(__FILE__), "../lib/poem-helper", "*.rb")].each {|f| require f}

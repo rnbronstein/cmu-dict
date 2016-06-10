@@ -1,0 +1,3 @@
+conf1:
+  adapter: sqlite3
+  database: dictionary.db

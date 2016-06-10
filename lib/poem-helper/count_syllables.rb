@@ -1,6 +1,6 @@
 require_relative '../../config/environment.rb'
 
-class CountSyllables
+class CountSyllables < ActiveRecord::Base
   include Readable
   include Matchable
   include Parsable

@@ -1,6 +1,6 @@
 require_relative '../../config/environment.rb'
 
-class Rhyme
+class Rhyme < ActiveRecord::Base
   include Readable
   include Matchable
   include Parsable
