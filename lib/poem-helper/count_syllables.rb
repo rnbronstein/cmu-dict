@@ -9,12 +9,17 @@ class CountSyllables < ActiveRecord::Base
 
   def initialize(input)
     @input = input.upcase
-    @match = self.match(@input)
+    # @match = self.match(@input)
   end
+  #
+  # def count
+  #   Dictionary.find(input).count
+  # end
 
-  def count
-    vowels(@match).count
-  end
+  #
+  # def count
+  #   vowels(@match).count
+  # end
 
 
 end

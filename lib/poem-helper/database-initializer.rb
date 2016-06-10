@@ -1,3 +1,8 @@
+require_relative '../../config/environment.rb'
+require_relative 'concerns/readable.rb'
+require_relative 'concerns/matchable.rb'
+require_relative 'concerns/parsable.rb'
+
 class DatabaseInitializer < ActiveRecord::Base
   include Readable
   include Matchable
@@ -5,13 +10,14 @@ class DatabaseInitializer < ActiveRecord::Base
 
   def add_words
     DICT.each do |entry|
-      Dictionary.create(word: word(entry))
+      
+      Pronunciation.create(word: word(entry))
     end
   end
 
   def add_phonemes
     DICT.each do |entry|
-      word = Dictionary.find(word: word(entry))
+      word = Pronunciation.find(word: word(entry))
       word.phonemes = phonemes(entry)
     end
   end
@@ -25,7 +31,7 @@ class DatabaseInitializer < ActiveRecord::Base
 
   def add_syllable_count
     DICT.each do |entry|
-      word = Dictionary.find(word: word(entry))
+      word = Pronunciation.find(word: word(entry))
       word.syllable_count = vowels(entry).count
     end
   end
