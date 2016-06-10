@@ -5,7 +5,7 @@ class CountSyllables
   include Matchable
   include Parsable
 
-  attr_accessor :input
+  attr_reader :input
 
   def initialize(input)
     @input = input
@@ -13,11 +13,7 @@ class CountSyllables
   end
 
   def count
-    count = 0
-    phonemes(@match).each do |phoneme|
-      count += 1 if phoneme.chars.first =~ /[AEIOU]/
-    end
-    count
+    vowels(@match).count
   end
 
 

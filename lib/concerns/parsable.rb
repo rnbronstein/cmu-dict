@@ -1,8 +1,13 @@
 module Parsable
 
   def phonemes(line)
-    phonemes = line.split.drop(2)
-    phonemes
+    line.split.drop(2)
+  end
+
+  def vowels(line)
+    phonemes(line).select do |phoneme|
+      phoneme if phoneme.chars.first =~ /[AEIOU]/
+    end
   end
 
 end
