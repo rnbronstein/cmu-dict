@@ -1,6 +1,7 @@
 module Parsable
 
   def phonemes(line)
+    # binding.pry
     line.split.drop(2)
   end
 

@@ -116,7 +116,7 @@ class Counter
   end
 
   def result
-    binding.pry
+    # binding.pry
     result = {}
     possible_syllables = []
     if actual_matches.count > 1

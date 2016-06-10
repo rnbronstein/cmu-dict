@@ -1,4 +1,4 @@
-require_relative '../config/environment.rb'
+require_relative '../../config/environment.rb'
 
 class CountSyllables
   include Readable
@@ -8,8 +8,8 @@ class CountSyllables
   attr_reader :input
 
   def initialize(input)
-    @input = input
-    @match = self.match(input)
+    @input = input.upcase
+    @match = self.match(@input)
   end
 
   def count
