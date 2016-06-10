@@ -5,7 +5,8 @@ module Matchable
   end
 
   def match(input)
-    dictionary.detect{|line| input == word(line)}.strip
+    # binding.pry
+    dictionary.detect{|line| input == word(line)}
   end
 
   private

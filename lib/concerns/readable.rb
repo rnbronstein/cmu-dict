@@ -1,3 +1,4 @@
 module Readable
-    DICT = File.open('cmudict').read.lines
+    dic = File.open('cmudict').read.lines
+    DICT = dic.map {|entry| entry.strip}
 end
