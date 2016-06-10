@@ -1,5 +1,5 @@
 class CheckDuplicates
-  include Readable
+  # include Readable
 
   def self.all_multiples
     OUTPUT.map do |line|

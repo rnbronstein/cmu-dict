@@ -7,9 +7,8 @@ class CountSyllables
     @input = input
   end
 
-
-  def entry_match
-    OUTPUT
+  def match_input_with_entry
+    OUTPUT.map {|entry| entry if entry.include?(input)}
   end
 
 
