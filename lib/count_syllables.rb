@@ -1,14 +1,23 @@
+require_relative '../config/environment.rb'
+
 class CountSyllables
   include Readable
+  include Matchable
+  include Parsable
 
-  attr_reader :input
+  attr_accessor :input
 
   def initialize(input)
     @input = input
+    @match = self.match(input)
   end
 
-  def match_input_with_entry
-    OUTPUT.map {|entry| entry if entry.include?(input)}
+  def count
+    count = 0
+    phonemes(@match).each do |phoneme|
+      count += 1 if phoneme.chars.first =~ /[AEIOU]/
+    end
+    count
   end
 
 

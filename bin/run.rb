@@ -1,3 +1,4 @@
-require_relative '../config/environment.rb'
-
-CheckDuplicates.all_multiples
+# require_relative '../config/environment.rb'
+#
+# apple = CountSyllables.new("APPLE")
+# puts apple.count

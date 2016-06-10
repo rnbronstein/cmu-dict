@@ -1,9 +1,3 @@
-module FileReader
-
-  def read
-    file = "cmudict"
-    full_dictionary = File.read(file)
-    OUTPUT = full_dictionary.lines
-  end
-
+module Readable
+    DICT = File.open('cmudict').read.lines
 end

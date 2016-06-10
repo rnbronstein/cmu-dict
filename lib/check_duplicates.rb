@@ -1,18 +1,24 @@
+require_relative '../config/environment.rb'
+
 class CheckDuplicates
-  # include Readable
+  include Readable
 
   def self.all_multiples
-    OUTPUT.map do |line|
-      multiple?(line)
+    DICT.map do |line|
+      line if multiple?(line)
+    end
+  end
+
+  def self.handle_multiples(input)
+    if all_multiples.include?(input)
+      ##do something
     end
   end
 
   private
-
-  def multiple?(line)
-    line.split!(" ")
-    line[1] =~ /\d/
-    binding.pry
+  def self.multiple?(line)
+    parts = line.split(" ")
+    parts[1].to_i > 1
   end
 
 end

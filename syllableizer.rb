@@ -1,5 +1,8 @@
 require 'pry'
 
+#SPAGHETTI CODE!
+
+
 # module Parser
 #   #define syllable rules and parse dictionary entries
 #
