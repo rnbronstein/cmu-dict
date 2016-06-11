@@ -1,39 +1,44 @@
 require_relative '../../config/environment.rb'
-require_relative 'concerns/readable.rb'
-require_relative 'concerns/matchable.rb'
-require_relative 'concerns/parsable.rb'
+# require_relative 'concerns/readable.rb'
+# require_relative 'concerns/matchable.rb'
+# require_relative 'concerns/parsable.rb'
 
-class DatabaseInitializer < ActiveRecord::Base
+class DatabaseInitializer
   include Readable
   include Matchable
+  extend Matchable
   include Parsable
+  extend Parsable
 
-  def add_words
+  def self.add_words
     DICT.each do |entry|
-      
-      Pronunciation.create(word: word(entry))
+      # binding.pry
+      Pronunciation.find_or_create_by(word: word(entry))
     end
   end
 
-  def add_phonemes
+  def self.add_information
     DICT.each do |entry|
-      word = Pronunciation.find(word: word(entry))
-      word.phonemes = phonemes(entry)
+      word = Pronunciation.find_by(word: word(entry))
+      word.update(phonemes: phonemes(entry), last_syllable: last_syllable(entry), syllable_count: vowels(entry).count)
     end
   end
+  #
+  # def self.add_last_syllable
+  #   DICT.each do |entry|
+  #     word = Pronunciation.find_by(word: word(entry))
+  #     word.last_syllable = last_syllable(entry)
+  #     word.save
+  #   end
+  # end
+  #
+  # def self.add_syllable_count
+  #   DICT.each do |entry|
+  #     word = Pronunciation.find_by(word: word(entry))
+  #     word.syllable_count = vowels(entry).count
+  #     word.save
+  #   end
+  # end
 
-  def add_last_syllable
-    DICT.each do |entry|
-      word = Dictonary.find(word: word(entry))
-      word.last_syllable = last_syllable(entry)
-    end
-  end
-
-  def add_syllable_count
-    DICT.each do |entry|
-      word = Pronunciation.find(word: word(entry))
-      word.syllable_count = vowels(entry).count
-    end
-  end
 
 end

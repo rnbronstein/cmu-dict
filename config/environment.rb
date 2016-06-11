@@ -1,4 +1,5 @@
 require 'active_record'
+require 'pry'
 
 connection = ActiveRecord::Base.establish_connection(
   :adapter => "sqlite3",
@@ -18,7 +19,6 @@ SQL
 ActiveRecord::Base.connection.execute(sql)
 
 
-
-Dir[File.join(File.dirname(__FILE__), "../../lib/poem-helper/concerns", "*.rb")].each {|f| require f}
-Dir[File.join(File.dirname(__FILE__), "../../lib/poem-helper", "*.rb")].each {|f| require f}
-Dir[File.join(File.dirname(__FILE__), "../../lib", "*.rb")].each {|f| require f}
+Dir[File.join(File.dirname(__FILE__), "../lib/poem-helper/concerns", "*.rb")].each {|f| require f}
+Dir[File.join(File.dirname(__FILE__), "../lib/poem-helper", "*.rb")].each {|f| require f}
+Dir[File.join(File.dirname(__FILE__), "../lib", "*.rb")].each {|f| require f}
