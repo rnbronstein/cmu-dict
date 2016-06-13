@@ -1,4 +1,4 @@
-# require_relative '../config/environment.rb'
-#
-# apple = CountSyllables.new("APPLE")
-# puts apple.count
+require_relative '../config/environment.rb'
+
+# DatabaseInitializer.add_words
+DatabaseInitializer.update_information
