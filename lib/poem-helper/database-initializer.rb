@@ -17,12 +17,13 @@ class DatabaseInitializer
     end
   end
 
-  # def self.add_information
-  #   DICT.each do |entry|
-  #     word = Pronunciation.find_by(word: word(entry))
-  #     word.update(phonemes: phonemes(entry), last_syllable: last_syllable(entry), syllable_count: vowels(entry).count)
-  #   end
-  # end
+  def self.update_information
+    DICT.each do |entry|
+      puts word(entry)
+      word = Pronunciation.find_by(word: word(entry))
+      word.update(last_syllable: last_syllable(entry))
+    end
+  end
   #
   # def self.add_last_syllable
   #   DICT.each do |entry|

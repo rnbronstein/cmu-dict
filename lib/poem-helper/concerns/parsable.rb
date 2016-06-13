@@ -13,12 +13,9 @@ module Parsable
   def last_syllable(line)
     #the last vowel plus any phonemes after
     ph = phonemes(line)
-    index = ph.find_index(last_vowel(line)) unless vowels(line).nil?
-    if index
-      ph.last(ph.length - index)
-    else
-      ph
-    end
+    index = ph.rindex(last_vowel(line)) unless vowels(line).nil?
+    index ? last_syl = ph.last(ph.length - index) : last_syl = ph
+    last_syl.join
   end
 
   private

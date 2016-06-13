@@ -7,25 +7,21 @@ class PoemHelper
   end
 
   def self.rhymes(input)
+    binding.pry
     Pronunciation.where(last_syllable: lookup(input).last_syllable)
   end
 
   def self.syllable_count(input)
-    lookup(input).count
+    lookup(input).syllable_count
   end
 
   def self.phonemes(input)
     lookup(input).phonemes
   end
 
-  def self.stress(input)
-    lookup(input).phonemes.select do |p|
-      p.chars.include?("0")
-    end
-  end
-
   def self.last_syllable(input)
     lookup(input).last_syllable
   end
+
 
 end
