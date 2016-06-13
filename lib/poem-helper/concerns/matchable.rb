@@ -12,5 +12,4 @@ module Matchable
   def word(line)
     line.split(" ")[0]
   end
-
 end

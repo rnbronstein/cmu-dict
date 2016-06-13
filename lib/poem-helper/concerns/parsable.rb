@@ -1,7 +1,6 @@
 module Parsable
 
   def phonemes(line)
-    # binding.pry
     line.split.drop(2)
   end
 
@@ -11,12 +10,20 @@ module Parsable
     end
   end
 
-  def last_syllable(entry)
-    if phonemes(entry).last == vowels(entry).last
-      vowels(entry).last
+  def last_syllable(line)
+    #the last vowel plus any phonemes after
+    ph = phonemes(line)
+    index = ph.find_index(last_vowel(line)) unless vowels(line).nil?
+    if index
+      ph.last(ph.length - index)
     else
-      phonemes(entry).last(2)
+      ph
     end
   end
 
+  private
+
+  def last_vowel(line)
+    vowels(line).last
+  end
 end
