@@ -15,11 +15,15 @@ describe PoemHelper do
   end
 
   it 'knows what phonemes are in a word' do
-    expect(PoemHelper.phonemes("TONIGHT")).to eq('["T", "UW0", "N", "AY1", "T"]')
+    expect(PoemHelper.phonemes("TONIGHT")).to eq(["T", "AH0", "N", "AY1", "T"])
   end
 
   it 'correctly determines the last syllable of a word' do
-    expect(PoemHelper.last_syllable("TONIGHT")).to eq('["AY1", "T"]')
+    expect(PoemHelper.last_syllable("TONIGHT")).to eq('AY1T')
+  end
+
+  it 'can retrieve an entry for a lowercase word' do
+    expect(PoemHelper.lookup("tonight")).to eq(PoemHelper.lookup("TONIGHT"))
   end
 
 end

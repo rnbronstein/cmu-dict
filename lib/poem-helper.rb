@@ -7,8 +7,7 @@ class PoemHelper
   end
 
   def self.rhymes(input)
-    binding.pry
-    Pronunciation.where(last_syllable: lookup(input).last_syllable)
+    Pronunciation.where(last_syllable: lookup(input).last_syllable).pluck(:word)
   end
 
   def self.syllable_count(input)
