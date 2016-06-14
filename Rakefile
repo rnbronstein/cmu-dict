@@ -1,3 +1,5 @@
+require 'pry'
+
 task :environment do
  require_relative './config/environment.rb'
 end
@@ -12,4 +14,9 @@ namespace :db do
   end
   task :reset => [:drop, :migrate] do
   end
+end
+
+desc 'drop into the Pry console'
+task :console => :environment do
+  Pry.start
 end

@@ -1,7 +1,4 @@
 require_relative '../../config/environment.rb'
-# require_relative 'concerns/readable.rb'
-# require_relative 'concerns/matchable.rb'
-# require_relative 'concerns/parsable.rb'
 
 class DatabaseInitializer
   include Readable
