@@ -1,28 +1,38 @@
 require_relative '../config/environment.rb'
 
 class PoemHelper
+  attr_accessor :input, :phoneme
 
-  def self.lookup(input, *phoneme)
+  def initialize(input, phoneme = nil)
+    @input = input
+    @phoneme = phoneme
+  end
+
+  def lookup
+    #add optional phoneme argument to allow users to specify which pronunciation
+    formatted = input.gsub(/\W+/, "").squeeze(" ").strip.upcase
     if phoneme
-      set = Pronunciation.where('phonemes LIKE %')
-      set.find_by(word: input.upcase)
+      set = Pronunciation.where('phonemes LIKE ?', "%#{phoneme}%")
+      set.find_by(word: formatted)
+    else
+      Pronunciation.find_by(word: formatted)
     end
   end
 
-  def self.rhymes(input)
-    Pronunciation.where(last_syllable: lookup(input).last_syllable).pluck(:word)
+  def rhymes
+    Pronunciation.where(last_syllable: lookup.last_syllable).pluck(:word)
   end
 
-  def self.syllable_count(input)
-    lookup(input).syllable_count
+  def syllable_count
+    lookup.syllable_count
   end
 
-  def self.phonemes(input)
-    lookup(input).phonemes
+  def phonemes
+    lookup.phonemes
   end
 
-  def self.last_syllable(input)
-    lookup(input).last_syllable
+  def last_syllable
+    lookup.last_syllable
   end
 
 
