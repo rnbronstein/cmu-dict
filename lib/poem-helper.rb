@@ -2,8 +2,11 @@ require_relative '../config/environment.rb'
 
 class PoemHelper
 
-  def self.lookup(input)
-    Pronunciation.find_by(word: (input.upcase))
+  def self.lookup(input, *phoneme)
+    if phoneme
+      set = Pronunciation.where('phonemes LIKE %')
+      set.find_by(word: input.upcase)
+    end
   end
 
   def self.rhymes(input)
