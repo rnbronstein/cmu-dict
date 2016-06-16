@@ -1,4 +1,4 @@
-# poem-helper
+# CMU-Dict
 
 A simple Ruby application (soon to be API!) that parses the Carnegie Mellon University Pronunciation Dictionary to count syllables and find rhymes.
 
