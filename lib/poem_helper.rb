@@ -38,10 +38,16 @@ class MakeHaiku < PoemHelper
 
   def self.haiku_from_input(input)
     words = lookup_multiple(input.split)
+    first_line = make_line(words, 5)
+    l = first_line.length
+    binding.pry
+    second_line = make_line(words, 7)
+    l = second_line.length
+    third_line = make_line(y, 5)
     <<-HAIKU
-      #{make_line(words, 5).join(" ")}
-      #{make_line(words, 7).join(" ")}
-      #{make_line(words, 5).join(" ")}
+      #{first_line.pluck(:word).join(" ")}
+      #{second_line.pluck(:word).join(" ")}
+      #{third_line.pluck(:word).join(" ")}
     HAIKU
   end
 
@@ -54,17 +60,26 @@ class MakeHaiku < PoemHelper
   def self.make_line(word_array, num)
     results = []
     count = 0
-    word_array.each do |w|
-      if count + w.syllable_count <= num
-        results << w.word
-        count += w.syllable_count
-      end
+    i = 0
+
+    until ((count == num) || (i > word_array.length)) do
+        syl_count = word_array[i].syllable_count
+        if count + syl_count <= num
+            results << word_array[i]
+            count += syl_count
+        elsif syl_count <= num
+            results = [word_array[i]]
+            count = syl_count
+        else
+            results = []
+            count = 0
+        end
+        word_array = word_array[i..-1]
+        i += 1
     end
-    results
   end
 
   def self.lookup_multiple(input_array)
-    # binding.pry
     obj_array = []
     input_array.each do |word|
       next if lookup(word).nil?
